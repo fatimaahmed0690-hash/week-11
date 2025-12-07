@@ -1,0 +1,36 @@
+CREATE DATABASE IF NOT EXISTS cyber_platform;
+USE week11_platform;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    password_hash VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS incidents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(100),
+    severity VARCHAR(50),
+    status VARCHAR(50),
+    description TEXT,
+    incident_date DATE
+);
+
+CREATE TABLE IF NOT EXISTS it_tickets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100),
+    description TEXT,
+    priority VARCHAR(50),
+    status VARCHAR(50)
+);
+
+INSERT INTO users (username,password_hash)
+VALUES ('admin', SHA2('admin123',256));
+
+INSERT INTO incidents (category,severity,status,description,incident_date)
+VALUES
+('Malware','High','Open','Ransomware detected','2025-01-01');
+
+INSERT INTO it_tickets (title,description,priority,status)
+VALUES
+('Server Down','Main server is down','High','Open');
